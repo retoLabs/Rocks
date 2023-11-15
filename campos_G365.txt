@@ -1,0 +1,55 @@
+Acquisition Notes
+Added To Collection Date
+Amount Paid
+City
+Collected By
+CountryId
+County
+Culture
+Date Collected
+Depth
+Description
+DimensionUnit
+Epimorph
+Estimated Age
+Fluorescent (Long Wave)
+Fluorescent (Mid Wave)
+Fluorescent (Short Wave)
+Genus
+Heated
+Height
+Identifier
+Irradiated
+Latitude
+Locality Name
+Longitude
+Materials
+Meteorite Abbrev.
+Meteorite Bulletin
+Meteorite Name
+Meteorite Type
+Mindat Locality ID
+Mindat Mineral ID
+Mine Name
+Minerals
+PartialPseudomorph
+Perceived Value
+Permissions
+Polished
+Pseudomorph
+Quality
+Quality Notes
+Radioactive
+Repaired
+Size Type
+Species
+Specimen History
+StateId
+Status
+Suite/SubCollection
+Title
+Type
+Weight
+Weight Unit
+Width
+“Spouse” Value

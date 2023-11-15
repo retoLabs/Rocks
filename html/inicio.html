@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inicio</title>
+	<link rel="stylesheet" href="lib/bootstrap_335.min.css">
+	<link rel="stylesheet" href="lib/font-awesome_430.min.css">
+
+
+	<script type='text/javascript' src="lib/jquery_321.min.js"></script>
+	<script type='text/javascript' src="lib/bootstrap_337.min.js"></script>
+	<script type='text/javascript' src="lib/vue_2517.js"></script>
+	<script type='text/javascript' src='lib/libBase64.js'></script>
+	<script type='text/javascript' src='lib/xml2json.js'></script>
+	<!-- script type='text/javascript' src='lib/d3/d3.min.js'></script -->
+
+	<script src="//d3js.org/d3.v4.min.js"></script>
+
+	<link rel="stylesheet" href="css/vueModal.css">
+	<link rel="stylesheet" href="css/d3_Croquis.css">
+	<style>
+		.progress-bar{background-color: ligth-blue;}
+		.navbar-brand {font-size:300%;}
+	</style>
+
+	<script type='module' src='js/inicio.js'></script>
+<!--script>
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://opendata.aemet.es/opendata/api/valores/climatologicos/inventarioestaciones/todasestaciones/?api_key=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbS5yb21lcm8uY3VldmFzQGdtYWlsLmNvbSIsImp0aSI6IjEyNGE4NTc3LTA1NjctNDM4Ni05YjE0LTE3YTFiMjMxZGVjNyIsImlzcyI6IkFFTUVUIiwiaWF0IjoxNjAxMzE0NDk5LCJ1c2VySWQiOiIxMjRhODU3Ny0wNTY3LTQzODYtOWIxNC0xN2ExYjIzMWRlYzciLCJyb2xlIjoiIn0.RUNOtu_kUrKHseMNoawvDUSJNL9yU1Oa1EUTvnDVxlE",
+  "method": "GET",
+  "headers": {
+    "cache-control": "no-cache"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+</script -->
+</head>
+
+
+
+<body>
+	<nav class="navbar">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="javascript:goPag('DASH')"><i class="fa fa-cogs">&nbsp;</i></a>
+			<a class="navbar-brand" href="javascript:goPag('MAPAF')"><i class="fa fa-globe">&nbsp;</i></a>
+		<form class="nav navbar-nav navbar-right form-inline" style="margin: 5px">
+			<select class="form-control" id="Fincas" onchange="javascript:showCroquisFinca(this)"></select>
+			<select class="form-control" id="Cults"  onchange="javascript:showCultivos(this)"></select>
+		</form>
+		</div>
+		<ul class="nav navbar-nav navbar-right">
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					<i class="fa fa-user">&nbsp;</i>
+					<span id="usrMenu"> User**</span>
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="javascript:cierraSesion()">
+							<span id="EXIT">Cerrar sesión**</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+	</nav>
+
+		<div id="p_bar">
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" :style="{ width: score + '%' }"> 
+					{{this.score}}
+				</div>
+				<span>{{msg}}</span>
+			</div>
+		</div>
+
+	<div id="map"></div>
+
+	<div id="json"></div>
+</body>
+</html> 

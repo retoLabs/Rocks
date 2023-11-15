@@ -1,0 +1,69 @@
+MySQL GMCAT:
+acceder a mysql:
+$ mysql -u root -p
+$Enter password: "Pauet:21"
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.35-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database gmcat;
+Query OK, 1 row affected (0,05 sec)
+
+mysql> show databases;
+
++--------------------+
+| Database           |
++--------------------+
+| Futbol             |
+| VClub              |
+| gmcat              |
+| information_schema |
+| mysql              |
+| pauet              |
+| pbasddl            |
+| performance_schema |
+| sys                |
++--------------------+
+
+mysql> use gmcat
+Database changed
+
+
+mysql> CREATE USER 'adminGMC'@'localhost' IDENTIFIED BY 'GMCat:23';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'adminGMC'@'localhost' WITH GRANT OPTION;
+---------------------------------------------------------------------
+CREATE TABLE gente (
+    ID MEDIUMINT NOT NULL AUTO_INCREMENT,
+    nombre varchar(64),
+    apellido varchar(64),
+    nifnie varchar(20),
+    direcc varchar(255),
+    poblac varchar(255),
+    foto varchar(255),
+    PRIMARY KEY (ID)
+);
+
+CREATE TABLE usuarios (
+    ID MEDIUMINT NOT NULL AUTO_INCREMENT,
+    usr varchar(64),
+    pwd varchar(64),
+    rol varchar(20),
+     PRIMARY KEY (ID)
+);
+
+WEBS:
+	www.lithosphera.com
+	www.mineralensko.es
+	www.cristaljoia.com
+	www.litos.net
+	www.mitominer.es (web)
+	www.mitominer.com (tienda)
+	www.rosellminerals.com

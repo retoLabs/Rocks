@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name='viewport' content='width=device-width, user-scalable=no'>
+	<title>Dashboard</title>
+
+<!--  ======================= LIB GLOBAL =======================  -->
+	<link rel="stylesheet" href="lib/bootstrap_335.min.css">
+	<link rel="stylesheet" href="lib/font-awesome_430.min.css">
+
+	<script type='text/javascript' src="lib/jquery_321.min.js"></script>
+	<script type='text/javascript' src="lib/bootstrap_337.min.js"></script>
+	<script type='text/javascript' src="lib/vue_2517.js"></script>
+	<script type='text/javascript' src='lib/libBase64.js'></script>
+
+	<link rel="stylesheet" href="css/vueModal.css">
+
+	<script type='module' src='js/dashboard.js'></script>
+
+</head>
+
+
+<body>
+	
+	<nav class="navbar">
+
+		<div class="navbar-header">
+			<a class="navbar-brand" href="javascript:goPag('INFO')"><i class="fa fa-info">&nbsp;</i></a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li>
+				<a href="javascript:goPag('CTRLAE')">
+					<span id="CTRLAE">Control AE**</span>
+				</a>
+			</li>
+			<li><a href="http://geojson.io/#map=19/42.07797/1.75315" target="_blank">Geo JSON</a></li>
+
+			<li>
+				<a href="javascript:goPag('NOTAS')">
+					<span id="NOTAS">Notas**</span>
+				</a>
+			</li>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					<span  id="MODULS">Módulos**</span>
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="javascript:goPag('SUELO')">
+							<span id="SUELO">Suelo**</span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:goPag('PLANTAS')">
+							<span id="PLANTAS">Plantas**</span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:goPag('CULTS')">
+							<span id="CULTS">Cultivos**</span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:goPag('CUADERNO')">
+							<span id="QUAD">Cuaderno**</span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:goPag('CLIMA')">
+							<span id="CLIMA">Clima**</span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:goPag('RIEGO')">
+							<span id="RIEGO">Riego**</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+
+		<ul class="nav navbar-nav navbar-right">
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					<i class="fa fa-user">&nbsp;</i>
+					<span id="usrMenu"> User**</span>
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="javascript:cambiaPwdUser()">
+							<span id="CHPWD">Cambiar password**</span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:cambiaKeoUser()">
+							<span id="CHKEO">Cambiar idioma**</span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:cierraSesion()">
+							<span id="EXIT">Cerrar sesión**</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</nav> 
+
+<!-- Fin del menu --------------------------------------------------->
+	<div class="container" id="estaPag">
+		<h1  style="color:gray;margin-bottom:50px" id="H1EXPL">Explotación</h1>
+		<div class="row">
+		<div>
+			<div class="col-md-3" style="margin-botton:50px">
+				<img class="img-circle" src="img/zonas.jpg" alt="imagen" title="Suelo" width="200" height="200" onclick="javascript:goPag('SUELO')">
+			</div> <!-- col-md-3 -->
+ 
+			<div class="col-md-3">
+				<img class="img-circle" src="img/especies.jpg" alt="imagen" title="Plantas" width="200" height="200" onclick="javascript:goPag('PLANTAS')">
+			</div>  <!-- col-md-3 -->
+
+			<div class="col-md-3">
+				<img class="img-circle" src="img/escenarios.jpg" alt="imagen" title="Cultivos" width="200" height="200" onclick="javascript:goPag('CULTS')">
+        </div>  <!-- col-md-3 -->
+      </div> <!-- V-IF -->
+			<div class="col-md-3">
+				<img class="img-circle" src="img/tractor.png" alt="imagen" title="Explotación" width="200" height="200" onclick="javascript:goPag('EXPLOT')">
+			</div> <!-- col-md-3 -->
+		</div> <!-- row -->
+
+		<div class="row">
+		<div>
+ 
+			<div class="col-md-3">
+				<img class="img-circle" src="img/db-blue.png" alt="imagen" title="Repositorio" width="200" height="200" onclick="javascript:goPag('REPO')">
+			</div>  <!-- col-md-3 -->
+
+			<div class="col-md-3">
+				<img class="img-circle" src="img/clima.svg" alt="imagen" title="Clima" width="200" height="200" onclick="javascript:goPag('CLIMA')">
+        </div>  <!-- col-md-3 -->
+
+			<div class="col-md-3">
+				<img class="img-circle" src="img/idiomas.jpg" alt="imagen" title="Idiomas" width="200" height="200" onclick="javascript:goPag('IDIOMA')">
+        </div>  <!-- col-md-3 -->
+			<div class="col-md-3">
+				<img class="img-circle" src="img/calendario.jpeg" alt="imagen" title="Almanaque" width="200" height="200" onclick="javascript:goPag('CALEND')">
+        </div>  <!-- col-md-3 -->
+      </div> <!-- V-IF -->
+		</div> <!-- row -->
+
+	</div> <!-- /container -->
+
+	
+	<div id="appModal">
+		<modal v-bind:clase="modo" v-if="show" @close="show = false" @graba="graba()" @borra="borra()">
+			<h3 slot="header">{{conds.retol}}</h3>
+			<div slot="body">
+				<form	v-if="edit_t === 'USER'" class="form">
+					<input class="form-control" v-model="item.tag" type="text" name="usr"	placeholder="Usuario">
+					<span class="error" v-if="(!conds.valid.tag.ok)">{{conds.valid.tag.txt}}</span>
+					<input class="form-control" v-model="item.obj.pwd" type="text" name="pwd" placeholder="Password">
+					<span class="error" v-if="(!conds.valid.pwd.ok)">{{conds.valid.pwd.txt}}</span>
+					<input class="form-control" v-model="item.obj.conf" type="text" name="conf" placeholder="Confirmac.">
+					<span class="error" v-if="(!conds.valid.conf.ok)">{{conds.valid.conf.txt}}</span>
+				</form>
+
+
+				<form	v-if="edit_t === 'CHKEO'" class="form">
+					<select size="8" class="form-control">
+						<option v-for="item in items" :value="item.obj.keo" @click="idAct = item.obj.keo">{{ item.tag }}</option>
+					</select>
+				</form>
+			</div>
+		</modal>
+	</div> <!-- appEdit -->
+
+</body>
+</html>
