@@ -1,5 +1,5 @@
 <?php
-include("qc_conexion.php");
+include("ita_conexion.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -14,7 +14,7 @@ Email	 	 : info@obedalvarado.pw
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>QC Reg 0</title>
+	<title>Usuaris</title>
 
 	<!-- Bootstrap -->
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
@@ -36,22 +36,21 @@ Email	 	 : info@obedalvarado.pw
 	</nav>
 	<div class="container">
 		<div class="content">
-			<h2>Quadern de camp CCPAE &raquo; Alta Reg 0</h2>
+			<h2>Alta usuari</h2>
 			<hr />
 
 			<?php
 			if(isset($_POST['add'])){
-				$orden = mysqli_real_escape_string($con,(strip_tags($_POST["orden"],ENT_QUOTES)));//Escanpando caracteres 
-				$rol	 = mysqli_real_escape_string($con,(strip_tags($_POST["rol"],ENT_QUOTES)));//Escanpando caracteres 
-				$nom	 = mysqli_real_escape_string($con,(strip_tags($_POST["nom"],ENT_QUOTES)));//Escanpando caracteres 
-				$nif	 = mysqli_real_escape_string($con,(strip_tags($_POST["nif"],ENT_QUOTES)));//Escanpando caracteres 
-				$reg	 = mysqli_real_escape_string($con,(strip_tags($_POST["reg"],ENT_QUOTES)));//Escanpando caracteres 
-			
+				$ID = mysqli_real_escape_string($con,(strip_tags($_POST["ID"],ENT_QUOTES))); 
+				$usr	 = mysqli_real_escape_string($con,(strip_tags($_POST["usr"],ENT_QUOTES))); 
+				$pwd	 = mysqli_real_escape_string($con,(strip_tags($_POST["pwd"],ENT_QUOTES))); 
+				$rol	 = mysqli_real_escape_string($con,(strip_tags($_POST["rol"],ENT_QUOTES))); 
+		
 
-				$cek = mysqli_query($con, "SELECT * FROM Reg00 WHERE orden='$orden'");
-				if(mysqli_num_rows($cek) == 0){
-					$insert = mysqli_query($con, "INSERT INTO Reg00 (orden, rol, nom, nif, reg)
-						VALUES('$orden','$rol', '$nom', '$nif', '$reg')") or die(mysqli_error());
+				$stmt = mysqli_query($con, "SELECT * FROM usuarios WHERE ID='$ID'");
+				if(mysqli_num_rows($stmt) == 0){
+					$insert = mysqli_query($con, "INSERT INTO usuarios (ID, usr, pwd, rol)
+						VALUES('$ID','$usr', '$pwd', '$rol')") or die(mysqli_error());
 						if($insert){
 							echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Bien hecho! Los datos han sido guardados con éxito.</div>';
 						}else{
@@ -59,51 +58,44 @@ Email	 	 : info@obedalvarado.pw
 						}
 					 
 				}else{
-					echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error. código exite!</div>';
+					echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error. código existe!</div>';
 				}
 			}
 			?>
 
 			<form class="form-horizontal" action="" method="post">
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Num</label>
+					<label class="col-sm-3 control-label">ID</label>
 					<div class="col-sm-2">
-						<input type="text" name="orden" class="form-control" placeholder="Num" required>
+						<input type="text" name="ID" class="form-control" placeholder="ID" required>
 					</div>
 				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Usuari</label>
+					<div class="col-sm-4">
+						<input type="text" name="usr" class="form-control" placeholder="usuario" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Password</label>
+					<div class="col-sm-4">
+						<input type="text" name="pwd" class="form-control" placeholder="Password" required>
+					</div>
+				</div>
+
+
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Rol</label>
 					<div class="col-sm-4">
-						<input type="text" name="rol" class="form-control" placeholder="Rol PROP|TECN" required>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label">Nom</label>
-					<div class="col-sm-4">
-						<input type="text" name="nom" class="form-control" placeholder="Nom" required>
+						<input type="text" name="rol" class="form-control" placeholder="Rol" required>
 					</div>
 				</div>
 
-
-				<div class="form-group">
-					<label class="col-sm-3 control-label">Nif</label>
-					<div class="col-sm-4">
-						<input type="text" name="nif" class="form-control" placeholder="Nif" required>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-sm-3 control-label">Registre</label>
-					<div class="col-sm-4">
-						<input type="text" name="reg" class="form-control" placeholder="Num registre" required>
-					</div>
-				</div>
-				
 				<div class="form-group">
 					<label class="col-sm-3 control-label">&nbsp;</label>
 					<div class="col-sm-6">
 						<input type="submit" name="add" class="btn btn-sm btn-primary" value="Guardar datos">
-						<a href="index.php" class="btn btn-sm btn-danger">Cancelar</a>
+						<a href="ita_usr_list.php" class="btn btn-sm btn-danger">Cancelar</a>
 					</div>
 				</div>
 			</form>

@@ -1,5 +1,5 @@
 <?php
-include("qc_conexion.php");
+include("ita_conexion.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -8,7 +8,7 @@ include("qc_conexion.php");
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>QC Reg 0</title>
+	<title>Personas</title>
 
 	<!-- Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -18,27 +18,34 @@ include("qc_conexion.php");
 		.content {
 			margin-top: 80px;
 		}
+
+		td.foto {
+		  max-width: 50px;
+		  overflow: hidden;
+		  white-space: nowrap;
+		  text-overflow: ellipsis;
+}
 	</style>
 
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top">
-		<?php include('qc_reg0_nav.php');?>
+		<?php include('ita_who_nav.php');?>
 	</nav>
 	<div class="container">
 		<div class="content">
-			<h2>Quadern de camp CCPAE &raquo; Reg 0</h2>
+			<h2>Personas</h2>
 			<hr />
 
 			<?php
-			if(isset($_GET['aksi']) == 'delete'){
+			if(isset($_GET['accion']) == 'delete'){
 				// escaping, additionally removing everything that could be (html/javascript-) code
-				$nik = mysqli_real_escape_string($con,(strip_tags($_GET["nik"],ENT_QUOTES)));
-				$cek = mysqli_query($con, "SELECT * FROM Reg00 WHERE orden='$nik'");
-				if(mysqli_num_rows($cek) == 0){
+				$ID = mysqli_real_escape_string($con,(strip_tags($_GET["ID"],ENT_QUOTES)));
+				$stmt = mysqli_query($con, "SELECT * FROM gente WHERE ID='$ID'");
+				if(mysqli_num_rows($stmt) == 0){
 					echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> No se encontraron datos.</div>';
 				}else{
-					$delete = mysqli_query($con, "DELETE FROM Reg00 WHERE orden='$nik'");
+					$delete = mysqli_query($con, "DELETE FROM gente WHERE ID='$ID'");
 					if($delete){
 						echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Datos eliminado correctamente.</div>';
 					}else{
@@ -47,34 +54,46 @@ include("qc_conexion.php");
 				}
 			}
 			?>
-
+<!--
+	nombre varchar(64),
+	apellido varchar(64),
+	nifnie varchar(20),
+	direcc varchar(255),
+	poblac varchar(255),
+	foto varchar(255),
+-->
 			<br />
 			<div class="table-responsive">
 			<table class="table table-striped table-hover">
 				<tr>
-					<th>Num</th>
-					<th>Rol</th>
-					<th>Nom</th>
-					<th>Nif</th>
-					<th>Registre</th>
+					<th>ID</th>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>NIF/NIE</th>
+					<th>Direcc</th>
+					<th>Poblac</th>
+					<th>Foto</th>
 				</tr>
 
 				<?php
-					$sql = mysqli_query($con, "SELECT * FROM Reg00 ORDER BY orden ASC");
+					$sql = mysqli_query($con, "SELECT * FROM gente ORDER BY ID ASC");
 					if(mysqli_num_rows($sql) == 0){
 						echo '<tr><td colspan="8">No hay datos.</td></tr>';
 					}else{
 						while($row = mysqli_fetch_assoc($sql)){
 						echo '
 						<tr>
-							<td>'.$row['orden'].'</td>
-							<td>'.$row['rol'].'</td>
-							<td>'.$row['nom'].'</td>
-							<td>'.$row['nif'].'</td>
-							<td>'.$row['reg'].'</td>
+							<td>'.$row['ID'].'</td>
+							<td>'.$row['nombre'].'</td>
+							<td>'.$row['apellido'].'</td>
+							<td>'.$row['nifnie'].'</td>
+							<td>'.$row['direcc'].'</td>
+							<td>'.$row['poblac'].'</td>
+							<td class="foto">'.$row['foto'].'</td>
 							<td>
-								<a href="qc_reg0_edit.php?nik='.$row['orden'].'" title="Editar datos" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-								<a href="index.php?aksi=delete&nik='.$row['orden'].'" title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos '.$row['nom'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+								<a href="ita_who_show.php?ID='.$row['ID'].'" title="Mostrar datos" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-view" aria-hidden="true"></span></a>
+								<a href="ita_who_edit.php?ID='.$row['ID'].'" title="Editar datos" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+								<a href="ita_who_list.php?accion=delete&ID='.$row['ID'].'" title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos '.$row['nombre'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 							</td>
 						</tr>
 						';

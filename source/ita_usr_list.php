@@ -1,5 +1,5 @@
 <?php
-include("gmc_conexion.php");
+include("ita_conexion.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -23,7 +23,7 @@ include("gmc_conexion.php");
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top">
-		<?php include('gmc_usr_nav.php');?>
+		<?php include('ita_usr_nav.php');?>
 	</nav>
 	<div class="container">
 		<div class="content">
@@ -72,8 +72,8 @@ include("gmc_conexion.php");
 							<td>'.$row['pwd'].'</td>
 							<td>'.$row['rol'].'</td>
 							<td>
-								<a href="gmc_usr_edit.php?ID='.$row['ID'].'" title="Editar datos" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-								<a href="gmc_usrList.php?accion=delete&ID='.$row['ID'].'" title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos '.$row['nom'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+								<a href="ita_usr_edit.php?ID='.$row['ID'].'" title="Editar datos" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+								<a href="ita_usrList.php?accion=delete&ID='.$row['ID'].'" title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos '.$row['nom'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 							</td>
 						</tr>
 						';

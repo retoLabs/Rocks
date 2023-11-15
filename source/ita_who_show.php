@@ -1,5 +1,5 @@
 <?php
-include("gmc_conexion.php");
+include("ita_conexion.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -45,7 +45,7 @@ include("gmc_conexion.php");
 			$ID = mysqli_real_escape_string($con,(strip_tags($_GET["ID"],ENT_QUOTES)));
 			$sql = mysqli_query($con, "SELECT * FROM gente WHERE ID=$ID");
 			if(mysqli_num_rows($sql) == 0){
-				header("Location: gmc_who_list.php");
+				header("Location: ita_who_list.php");
 			}else{
 				$row = mysqli_fetch_assoc($sql);
 			}
@@ -67,7 +67,7 @@ include("gmc_conexion.php");
 				<div class="form-group">
 					<label class="col-sm-3 control-label">&nbsp;</label>
 					<div class="col-sm-6">
-						<a href="gmc_who_list.php" class="btn btn-sm btn-danger">Cancelar</a>
+						<a href="ita_who_list.php" class="btn btn-sm btn-danger">Cancelar</a>
 					</div>
 				</div>
 			</form>

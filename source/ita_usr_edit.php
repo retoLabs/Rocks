@@ -1,5 +1,5 @@
 <?php
-include("qc_conexion.php");
+include("ita_conexion.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -7,7 +7,7 @@ include("qc_conexion.php");
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>QC Reg 0</title>
+	<title>Usuaris</title>
 
 	<!-- Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -29,28 +29,27 @@ include("qc_conexion.php");
 	</nav>
 	<div class="container">
 		<div class="content">
-			<h2>Quadern de camp CCPAE &raquo; Edit Reg 0</h2>
+			<h2>Edit usuari</h2>
 			<hr />
 			
 			<?php
 			// escaping, additionally removing everything that could be (html/javascript-) code
-			$nik = mysqli_real_escape_string($con,(strip_tags($_GET["nik"],ENT_QUOTES)));
-			$sql = mysqli_query($con, "SELECT * FROM Reg00 WHERE orden=$nik");
+			$ID = mysqli_real_escape_string($con,(strip_tags($_GET["ID"],ENT_QUOTES)));
+			$sql = mysqli_query($con, "SELECT * FROM usuarios WHERE ID=$ID");
 			if(mysqli_num_rows($sql) == 0){
-				header("Location: index.php");
+				header("Location: ita_usr_list.php");
 			}else{
 				$row = mysqli_fetch_assoc($sql);
 			}
 			if(isset($_POST['save'])){
-				$orden = mysqli_real_escape_string($con,(strip_tags($_POST["orden"],ENT_QUOTES)));//Escanpando caracteres 
+				$ID = mysqli_real_escape_string($con,(strip_tags($_POST["ID"],ENT_QUOTES)));//Escanpando caracteres 
 				$rol	 = mysqli_real_escape_string($con,(strip_tags($_POST["rol"],ENT_QUOTES)));//Escanpando caracteres 
-				$nom	 = mysqli_real_escape_string($con,(strip_tags($_POST["nom"],ENT_QUOTES)));//Escanpando caracteres 
-				$nif	 = mysqli_real_escape_string($con,(strip_tags($_POST["nif"],ENT_QUOTES)));//Escanpando caracteres 
-				$reg	 = mysqli_real_escape_string($con,(strip_tags($_POST["reg"],ENT_QUOTES)));//Escanpando caracteres 
+				$usr	 = mysqli_real_escape_string($con,(strip_tags($_POST["usr"],ENT_QUOTES)));//Escanpando caracteres 
+				$pwd	 = mysqli_real_escape_string($con,(strip_tags($_POST["pwd"],ENT_QUOTES)));//Escanpando caracteres 
 				
-				$update = mysqli_query($con, "UPDATE Reg00 SET rol='$rol', nom='$nom', nif='$nif', reg='$reg' WHERE orden='$nik'") or die(mysqli_error());
+				$update = mysqli_query($con, "UPDATE usuarios SET rol='$rol', usr='$usr', pwd='$pwd' WHERE ID='$ID'") or die(mysqli_error());
 				if($update){
-					header("Location: qc_reg0_edit.php?nik=".$nik."&pesan=sukses");
+					header("Location: ita_usr_edit.php?ID=".$ID."&pesan=sukses");
 				}else{
 					echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error, no se pudo guardar los datos.</div>';
 				}
@@ -60,11 +59,13 @@ include("qc_conexion.php");
 				echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Los datos han sido guardados con éxito.</div>';
 			}
 			?>
+
+
 			<form class="form-horizontal" action="" method="post">
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Num</label>
+					<label class="col-sm-3 control-label">ID</label>
 					<div class="col-sm-2">
-						<input type="text" name="orden" value="<?php echo $row ['orden']; ?>" class="form-control" placeholder="Num" required>
+						<input type="text" name="ID" value="<?php echo $row ['ID']; ?>" class="form-control" placeholder="Num" required>
 					</div>
 				</div>
 				<div class="form-group">
@@ -74,32 +75,26 @@ include("qc_conexion.php");
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Nom</label>
+					<label class="col-sm-3 control-label">Usuario</label>
 					<div class="col-sm-4">
-						<input type="text" name="nom" value="<?php echo $row ['nom']; ?>" class="form-control" placeholder="Nom" required>
+						<input type="text" name="usr" value="<?php echo $row ['usr']; ?>" class="form-control" placeholder="Usuario" required>
 					</div>
 				</div>
 
 
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Nif</label>
+					<label class="col-sm-3 control-label">Password</label>
 					<div class="col-sm-4">
-						<input type="text" name="nif" value="<?php echo $row ['nif']; ?>" class="form-control" placeholder="Nif" required>
+						<input type="text" name="pwd" value="<?php echo $row ['pwd']; ?>" class="form-control" placeholder="Password" required>
 					</div>
 				</div>
 
-				<div class="form-group">
-					<label class="col-sm-3 control-label">Registre</label>
-					<div class="col-sm-4">
-						<input type="text" name="reg" value="<?php echo $row ['reg']; ?>" class="form-control" placeholder="Num registre" required>
-					</div>
-				</div>
 				
 				<div class="form-group">
 					<label class="col-sm-3 control-label">&nbsp;</label>
 					<div class="col-sm-6">
 						<input type="submit" name="save" class="btn btn-sm btn-primary" value="Guardar datos">
-						<a href="index.php" class="btn btn-sm btn-danger">Cancelar</a>
+						<a href="ita_usr_list.php" class="btn btn-sm btn-danger">Cancelar</a>
 					</div>
 				</div>
 			</form>

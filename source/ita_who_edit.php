@@ -1,5 +1,5 @@
 <?php
-include("gmc_conexion.php");
+include("ita_conexion.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -45,7 +45,7 @@ include("gmc_conexion.php");
 			$ID = mysqli_real_escape_string($con,(strip_tags($_GET["ID"],ENT_QUOTES)));
 			$sql = mysqli_query($con, "SELECT * FROM gente WHERE ID=$ID");
 			if(mysqli_num_rows($sql) == 0){
-				header("Location: gmc_who_list.php");
+				header("Location: ita_who_list.php");
 			}else{
 				$row = mysqli_fetch_assoc($sql);
 			}
@@ -60,7 +60,7 @@ include("gmc_conexion.php");
 				
 				$update = mysqli_query($con, "UPDATE gente SET nombre='$nombre', apellido='$apellido', nifnie='$nifnie', direcc='$direcc', poblac='$poblac', foto='$foto' WHERE ID='$ID'") or die(mysqli_error());
 				if($update){
-					header("Location: gmc_who_edit.php?ID=".$ID."&pesan=sukses");
+					header("Location: ita_who_edit.php?ID=".$ID."&pesan=sukses");
 				}else{
 					echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error, no se pudo guardar los datos.</div>';
 				}
@@ -123,7 +123,7 @@ include("gmc_conexion.php");
 					<label class="col-sm-3 control-label">&nbsp;</label>
 					<div class="col-sm-6">
 						<input type="submit" name="save" class="btn btn-sm btn-primary" value="Guardar datos">
-						<a href="gmc_who_list.php" class="btn btn-sm btn-danger">Cancelar</a>
+						<a href="ita_who_list.php" class="btn btn-sm btn-danger">Cancelar</a>
 					</div>
 				</div>
 			</form>
