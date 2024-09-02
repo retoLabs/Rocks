@@ -1,16 +1,14 @@
 <?php
-/*Datos de conexion a la base de datos*/
 /*
 $db_host = "localhost";
-$db_user = "toti";
-$db_pass = "TotiRibe:21";
-$db_name = "pauet";
+$db_user = "adminITA";
+$db_pass = "Rocks:23";
+$db_name = "rocks";
 */
 $db_host = "localhost";
 $db_user = "adminGMC";
 $db_pass = "GMCat:23";
 $db_name = "gmcat";
-
 
 $con = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
